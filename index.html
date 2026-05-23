@@ -9,7 +9,7 @@
   
   <style>
     /* ==========================================================================
-       CSS Variables (Easy to customize colors and styling)
+       CSS Variables
        ========================================================================== */
     :root {
       --bg-main: #0b1020;
@@ -118,13 +118,17 @@
     .logo-container {
       display: flex;
       align-items: center;
-      gap: 0.5rem;
+      gap: 0.6rem;
       text-decoration: none;
     }
+    
+    /* 修正：ヘッダーの小さなアイコンがぼやけないように設定 */
     .logo-icon {
       width: 24px;
       height: 24px;
       object-fit: contain;
+      image-rendering: -moz-crisp-edges;
+      image-rendering: pixelated;
     }
     .logo {
       font-weight: 800;
@@ -150,8 +154,6 @@
       font-size: 0.9rem;
       box-shadow: none;
     }
-
-    /* Language Switcher Button */
     .lang-btn {
       background: rgba(255, 255, 255, 0.1);
       border: 1px solid rgba(255, 255, 255, 0.2);
@@ -180,14 +182,24 @@
       padding: 7rem 2rem 4rem 2rem;
       background: radial-gradient(circle at top, #1d4ed8 -20%, #0b1020 70%);
     }
-    /* アプリメインアイコンのスタイリング */
+
+    /* ★【超重要】ドット絵がぼやける問題を解決するCSS
+      倍率変更時（拡大時）にピクセルを補間せず、そのままくっきりと表示させます。
+    */
     .app-main-icon {
-      width: 96px;
-      height: 96px;
+      width: 128px; /* 少し大きめに見せるサイズ調整 */
+      height: 128px;
       object-fit: contain;
       margin-bottom: 1.5rem;
-      filter: drop-shadow(0 8px 24px rgba(37, 99, 235, 0.5));
+      
+      /* ドット絵の輪郭をパキッとさせる魔法のコード */
+      image-rendering: -moz-crisp-edges; /* Firefox用 */
+      image-rendering: pixelated;        /* Chrome, Edge, Safari用 */
+      
+      /* 綺麗なドットに干渉しない控えめなシャドウ */
+      filter: drop-shadow(0 8px 16px rgba(0, 0, 0, 0.5)); 
     }
+    
     .version {
       display: inline-block;
       padding: 0.4rem 1rem;
@@ -258,7 +270,7 @@
     }
 
     /* ==========================================================================
-       Roadmap (Timeline Style)
+       Roadmap
        ========================================================================== */
     .roadmap {
       max-width: 600px;
@@ -356,7 +368,7 @@
       <a href="#tech" data-i18n="nav-tech">Tech</a>
       <a href="#roadmap" data-i18n="nav-roadmap">Roadmap</a>
       <button class="lang-btn" onclick="toggleLanguage()" id="langBtn">日本語</button>
-      <a href="https://github.com/user-attachments/files/28171276/nodetalk.zip" class="cta nav-cta" download data-i18n="btn-download">Download</a>
+      <a href="https://github.com/user-attachments/files/28171065/nodetalk.zip" class="cta nav-cta" download data-i18n="btn-download">Download</a>
     </nav>
   </header>
 
@@ -369,7 +381,7 @@
       A fast, secure local network messaging app built for LAN environments. No internet, no accounts, just instant communication.
     </p>
     <div class="hero-buttons">
-      <a href="https://github.com/user-attachments/files/28171276/nodetalk.zip" class="cta" download data-i18n="btn-download-v">Download v1.0.0</a>
+      <a href="https://github.com/user-attachments/files/28171065/nodetalk.zip" class="cta" download data-i18n="btn-download-v">Download v1.0.0</a>
       <a href="#features" class="cta cta-secondary" data-i18n="btn-explore">Explore Features</a>
     </div>
   </section>
@@ -428,7 +440,7 @@
     <div class="action-section">
       <h3 data-i18n="bottom-title">Ready to secure your local communication?</h3>
       <p data-i18n="bottom-desc">NodeTalk is completely free and open-source.</p>
-      <a href="https://github.com/user-attachments/files/28171276/nodetalk.zip" class="cta" download data-i18n="bottom-btn">Download NodeTalk Now</a>
+      <a href="https://github.com/user-attachments/files/28171065/nodetalk.zip" class="cta" download data-i18n="bottom-btn">Download NodeTalk Now</a>
     </div>
   </section>
 
@@ -486,7 +498,7 @@
         "f4-desc": "最新の暗号化プロトコルを標準装備。ローカル通信であっても中身を強力に保護します。",
         "title-tech": "技術スタック",
         "title-roadmap": "ロードマップ",
-        "r1": "— LAN内チャット、P2Pメッセージング",
+        "r1": "— LAN内チャット、ファイル共有、P2Pメッセージング",
         "r2": "— 音声通話機能",
         "r3": "— モバイル端末（iOS/Android）対応",
         "r4": "— ウェブブラウザ版の提供",

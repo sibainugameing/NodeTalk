@@ -4,6 +4,9 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>NodeTalk | v1.0.0</title>
+  
+  <link rel="icon" href="icon.ico" type="image/x-icon">
+  
   <style>
     /* ==========================================================================
        CSS Variables (Easy to customize colors and styling)
@@ -112,11 +115,21 @@
       justify-content: space-between;
       align-items: center;
     }
+    .logo-container {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      text-decoration: none;
+    }
+    .logo-icon {
+      width: 24px;
+      height: 24px;
+      object-fit: contain;
+    }
     .logo {
       font-weight: 800;
       font-size: 1.4rem;
       color: white;
-      text-decoration: none;
     }
     nav {
       display: flex;
@@ -166,6 +179,14 @@
       text-align: center;
       padding: 7rem 2rem 4rem 2rem;
       background: radial-gradient(circle at top, #1d4ed8 -20%, #0b1020 70%);
+    }
+    /* アプリメインアイコンのスタイリング */
+    .app-main-icon {
+      width: 96px;
+      height: 96px;
+      object-fit: contain;
+      margin-bottom: 1.5rem;
+      filter: drop-shadow(0 8px 24px rgba(37, 99, 235, 0.5));
     }
     .version {
       display: inline-block;
@@ -326,7 +347,10 @@
 <body>
 
   <header>
-    <a href="#" class="logo">NodeTalk</a>
+    <a href="#" class="logo-container">
+      <img src="icon.ico" alt="NodeTalk" class="logo-icon" onerror="this.style.display='none'">
+      <span class="logo">NodeTalk</span>
+    </a>
     <nav>
       <a href="#features" data-i18n="nav-features">Features</a>
       <a href="#tech" data-i18n="nav-tech">Tech</a>
@@ -337,13 +361,15 @@
   </header>
 
   <section class="hero">
+    <img src="icon.ico" alt="NodeTalk Icon" class="app-main-icon" onerror="this.style.display='none'">
+    
     <div class="version">NodeTalk v1.0.0</div>
     <h1 data-i18n="hero-title">Talk Local.<br>Stay Private.</h1>
     <p class="tagline" data-i18n="hero-tagline">
       A fast, secure local network messaging app built for LAN environments. No internet, no accounts, just instant communication.
     </p>
     <div class="hero-buttons">
-      <a href="https://github.com/user-attachments/files/28171276/nodetalk.zip" class="cta" download data-i18n="btn-download-v">Download v1.0.0</a>
+      <a href="https://github.com/user-attachments/files/28171065/nodetalk.zip" class="cta" download data-i18n="btn-download-v">Download v1.0.0</a>
       <a href="#features" class="cta cta-secondary" data-i18n="btn-explore">Explore Features</a>
     </div>
   </section>
@@ -402,7 +428,7 @@
     <div class="action-section">
       <h3 data-i18n="bottom-title">Ready to secure your local communication?</h3>
       <p data-i18n="bottom-desc">NodeTalk is completely free and open-source.</p>
-      <a href="https://github.com/user-attachments/files/28171276/nodetalk.zip" class="cta" download data-i18n="bottom-btn">Download NodeTalk Now</a>
+      <a href="https://github.com/user-attachments/files/28171065/nodetalk.zip" class="cta" download data-i18n="bottom-btn">Download NodeTalk Now</a>
     </div>
   </section>
 
@@ -411,7 +437,6 @@
   </footer>
 
   <script>
-    // 1. Text Data JSON (Add or modify text here)
     const i18nData = {
       en: {
         "nav-features": "Features",
@@ -471,13 +496,11 @@
       }
     };
 
-    // 2. Initialize Language (Default to 'en')
     let currentLang = localStorage.getItem('selectedLanguage') || 'en';
 
     function applyLanguage(lang) {
       document.documentElement.lang = lang;
       
-      // Update all elements with [data-i18n] attribute
       document.querySelectorAll('[data-i18n]').forEach(element => {
         const key = element.getAttribute('data-i18n');
         if (i18nData[lang][key]) {
@@ -485,21 +508,17 @@
         }
       });
 
-      // Update toggle button text (Shows the OPPOSITE language to switch to)
       const langBtn = document.getElementById('langBtn');
       langBtn.textContent = lang === 'en' ? '日本語' : 'English';
       
-      // Save user preference
       localStorage.setItem('selectedLanguage', lang);
     }
 
-    // 3. Toggle Function
     function toggleLanguage() {
       currentLang = currentLang === 'en' ? 'ja' : 'en';
       applyLanguage(currentLang);
     }
 
-    // Run on page load
     document.addEventListener('DOMContentLoaded', () => {
       applyLanguage(currentLang);
     });
